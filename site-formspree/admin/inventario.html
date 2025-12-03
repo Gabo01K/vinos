@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventario • Admin Le Rosset</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <div class="brand">
+      <img src="../assets/logo.svg" alt="Le Rosset logo">
+      <span>Panel Administrativo</span>
+    </div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="inventario.html">Inventario</a>
+      <a href="lotes.html">Productos terminados</a>
+      <a href="ventas.html">Ventas</a>
+      <a href="reportes.html">Reportes</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="section">
+  <div class="container">
+    <h1>Inventario</h1>
+    <div class="grid" style="grid-template-columns:1fr 1fr; gap:20px">
+      <div class="card">
+        <div class="body">
+          <h2>Agregar producto</h2>
+          <form class="form" onsubmit="addProduct(event)">
+            <label>SKU <input name="sku" required placeholder="Ej. LR-TIN-001"></label>
+            <label>Nombre <input name="name" required></label>
+            <label>Categoría <input name="category" required></label>
+            <label>Costo <input name="cost" type="number" step="0.01" required></label>
+            <label>Precio <input name="price" type="number" step="0.01" required></label>
+            <label>Stock inicial <input name="stock" type="number" value="0"></label>
+            <label>Mínimo en stock <input name="min" type="number" value="0"></label>
+            <label>Proveedor <input name="provider"></label>
+            <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="lotTracked"> Control por lotes</label>
+            <button class="btn" type="submit">Guardar producto</button>
+          </form>
+        </div>
+      </div>
+      <div class="card">
+        <div class="body">
+          <h2>Movimiento</h2>
+          <form class="form" onsubmit="addMovement(event)">
+            <label>Tipo
+              <select name="type" required>
+                <option value="entrada">Entrada</option>
+                <option value="salida">Salida</option>
+                <option value="ajuste">Ajuste (reemplaza stock)</option>
+              </select>
+            </label>
+            <label>SKU
+              <select name="sku" required>
+                <script>document.currentScript.insertAdjacentHTML('beforebegin', DB.get('products', []).map(p=>`<option value="${'{'}p.sku{'}'}">${'{'}p.sku{'}'} — ${'{'}p.name{'}'}</option>`).join(''))</script>
+              </select>
+            </label>
+            <label>Cantidad <input name="qty" type="number" min="0" required></label>
+            <label>Fecha <input name="date" type="date"></label>
+            <label>Nota <input name="note"></label>
+            <button class="btn" type="submit">Registrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Existencias</h2>
+      <div class="summary">Valor de inventario: <strong id="inv-value">—</strong></div>
+      <div class="card"><div class="body">
+        <table>
+          <thead><tr><th>SKU</th><th>Nombre</th><th>Categoría</th><th>Costo</th><th>Precio</th><th>Stock</th><th>Mín</th><th>Proveedor</th><th>Alertas</th></tr></thead>
+          <tbody id="inv-rows"></tbody>
+        </table>
+        <div style="display:flex; gap:10px; margin-top:10px">
+          <button class="btn secondary" onclick="exportCSV('inventario.csv', DB.get('products', []))">Exportar CSV</button>
+          <button class="btn secondary" onclick="printSection()">Imprimir / PDF</button>
+        </div>
+      </div></div>
+    </div>
+    <div class="section">
+      <h2>Kárdex</h2>
+      <div class="card"><div class="body">
+        <table>
+          <thead><tr><th>Fecha</th><th>Tipo</th><th>SKU</th><th>Cantidad</th><th>Nota</th></tr></thead>
+          <tbody id="kardex-rows"></tbody>
+        </table>
+        <button class="btn secondary" onclick="exportCSV('movimientos.csv', DB.get('moves', []))">Exportar CSV</button>
+      </div></div>
+    </div>
+  </div>
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>

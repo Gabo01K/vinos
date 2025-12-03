@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto &ndash; Le Rosset</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <div class="brand"><img src="assets/logo.svg" alt="Le Rosset logo"><span>Le Rosset</span></div>
+      <nav>
+        <a href="index.html#catalogo">Cat&aacute;logo</a>
+        <a href="about.html">Sobre nosotros</a>
+        <a href="contact.html">Contacto</a>
+        <a href="privacy.html">Privacidad</a>
+      </nav>
+      <button class="cta" data-open-cart>Carrito <span id="cart-badge">0</span></button>
+    </div>
+  </header>
+  <main class="section">
+    <div class="container contact-grid">
+      <div class="contact-card">
+        <h1>Contacto</h1>
+        <p>Estamos listos para apoyar tus pedidos especiales, visitas al vi&ntilde;edo o colaboraciones con restaurantes y tiendas.</p>
+        <div class="contact-details">
+          <div>
+            <span>Correo</span>
+            <p><a href="mailto:hola@lerosset.mx">hola@lerosset.mx</a></p>
+          </div>
+          <div>
+            <span>Tel&eacute;fono</span>
+            <p><a href="tel:+529999999999">+52 (999) 999 9999</a></p>
+          </div>
+          <div>
+            <span>Horario</span>
+            <p>L-V 9:00&ndash;18:00 (CDMX)</p>
+          </div>
+        </div>
+        <p class="small">Tambien puedes escribirnos por este formulario y responderemos en menos de 24 horas h&aacute;biles.</p>
+      </div>
+      <form class="form" action="https://formspree.io/f/mrbawdyw" method="POST">
+        <label>Nombre
+          <input required name="name" placeholder="Tu nombre">
+        </label>
+        <label>Correo electr&oacute;nico
+          <input required type="email" name="email" placeholder="tu@correo.com">
+        </label>
+        <label>Tel&eacute;fono
+          <input type="tel" name="phone" placeholder="+52 1 55 0000 0000">
+        </label>
+        <label>Asunto
+          <input name="subject" placeholder="Pedido especial, visita, colaboraci&oacute;n...">
+        </label>
+        <label>Mensaje
+          <textarea required name="message" rows="5" placeholder="&iquest;En qu&eacute; podemos ayudarte?"></textarea>
+        </label>
+        <input type="hidden" name="_subject" value="Contacto desde Le Rosset">
+        <button class="btn" type="submit">Enviar mensaje</button>
+        <p class="small">Al enviar aceptas nuestro <a href="privacy.html">Aviso de Privacidad</a>.</p>
+      </form>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container grid" style="grid-template-columns:2fr 1fr 1fr">
+      <div>
+        <strong>Le Rosset</strong>
+        <p class="small"><a href="terms.html">T&eacute;rminos y Condiciones</a> &middot; <a href="returns.html">Devoluciones</a> &middot; <a href="shipping.html">Env&iacute;os</a></p>
+      </div>
+      <div>
+        <strong>Atenci&oacute;n</strong>
+        <p class="small">Horario: L-V 9:00&ndash;18:00 (CDMX)</p>
+        <p class="small">Tel.: <em>(rellenar)</em><br>Correo: <em>(rellenar)</em></p>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

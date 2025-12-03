@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout • Le Rosset</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header"><div class="container nav">
+    <div class="brand"><img src="assets/logo.svg" alt="Le Rosset logo"><span>Le Rosset</span></div>
+    <nav>
+      <a href="index.html#catalogo">Catálogo</a>
+      <a href="about.html">Sobre nosotros</a>
+      <a href="contact.html">Contacto</a>
+      <a href="privacy.html">Privacidad</a>
+    </nav>
+    <button class="cta" data-open-cart>Carrito <span id="cart-badge">0</span></button>
+  </div></header>
+  <main class="section">
+    <div class="container grid" style="grid-template-columns:1.3fr 1fr">
+      <div>
+        <h1>Resumen de compra</h1>
+        <table>
+          <thead><tr><th>Producto</th><th>Cantidad</th><th>Precio</th><th>Importe</th></tr></thead>
+          <tbody id="checkout-rows"></tbody>
+        </table>
+        <div class="summary" style="margin-top:12px">
+          <div class="small">Subtotal (sin IVA): <strong id="co-subtotal">—</strong></div>
+          <div class="small">IVA: <strong id="co-iva">—</strong></div>
+          <div>Total: <strong id="co-total">—</strong></div>
+          <p class="small">Los precios ya incluyen IVA (16%).</p>
+        </div>
+        <h2>Datos de envío</h2>
+        <form class="form" id="shipping">
+          <label>Nombre completo<input required></label>
+          <label>Teléfono<input required type="tel"></label>
+          <label>Dirección<input required placeholder="Calle, número, colonia"></label>
+          <label>Ciudad<input required></label>
+          <label>Estado<select required>
+            <option value="">Selecciona...</option>
+            <option>CDMX</option><option>Jalisco</option><option>Nuevo León</option><option>Estado de México</option>
+          </select></label>
+          <label>Código Postal<input required pattern="\d{5}" title="5 dígitos"></label>
+        </form>
+      </div>
+      <div>
+        <h2>Simulación de pago</h2>
+        <form class="form" onsubmit="event.preventDefault(); window.location.href='success.html'">
+          <label>Número de tarjeta<input required inputmode="numeric" pattern="\d{16}" placeholder="16 dígitos"></label>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+            <label>MM/AA<input required pattern="\d{2}/\d{2}" placeholder="MM/AA"></label>
+            <label>CVV<input required pattern="\d{3}" placeholder="3 dígitos"></label>
+          </div>
+          <label>Nombre en la tarjeta<input required></label>
+          <button class="btn" type="submit">Pagar <span id="amount">—</span></button>
+          <p class="small">Demostración: no se procesan pagos reales. No ingreses datos reales.</p>
+        </form>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const a = sessionStorage.getItem('amount');
+      if(a) document.getElementById('amount').textContent = ' ' + new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(Number(a));
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const exp = document.querySelector('input[placeholder="MM/AA"]');
+      if(exp){
+        exp.addEventListener('input', e=>{
+          let v = e.target.value.replace(/[^0-9]/g,'');
+          if(v.length>=3) v = v.slice(0,2) + '/' + v.slice(2,4);
+          e.target.value = v;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#5E2A2C"/>
+      <stop offset="1" stop-color="#C54B6C"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="60" rx="10" fill="url(#g)"/>
+  <g transform="translate(10,12)" fill="#FFEFD6">
+    <text x="0" y="28" font-size="26" font-family="Georgia, 'Times New Roman', serif" font-weight="700">Le Rosset</text>
+    <text x="0" y="48" font-size="10" font-family="Georgia, 'Times New Roman', serif" opacity="0.9">Vinos • Bodega • Viñedo</text>
+  </g>
+</svg>

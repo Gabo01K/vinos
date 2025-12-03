@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gracias • Le Rosset</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="section">
+    <div class="container" style="text-align:center">
+      <h1>¡Gracias por tu compra!</h1>
+      <p>Tu pedido ha sido recibido. Te enviaremos confirmación al correo registrado.</p>
+      <a class="btn" href="index.html">Volver al inicio</a>
+    </div>
+  </main>
+  <script>
+    // Limpiar carrito tras simulación exitosa
+    localStorage.removeItem('cart');
+    sessionStorage.removeItem('amount');
+  </script>
+</body>
+</html>

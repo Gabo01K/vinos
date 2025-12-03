@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Productos terminados (Lotes) • Admin Le Rosset</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <div class="brand">
+      <img src="../assets/logo.svg" alt="Le Rosset logo">
+      <span>Panel Administrativo</span>
+    </div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="inventario.html">Inventario</a>
+      <a href="lotes.html">Productos terminados</a>
+      <a href="ventas.html">Ventas</a>
+      <a href="reportes.html">Reportes</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="section">
+  <div class="container">
+    <h1>Productos terminados (Lotes)</h1>
+    <div class="card"><div class="body">
+      <form class="form" onsubmit="addLot(event)">
+        <label>Lote <input name="lot" placeholder="Se genera si lo dejas vacío"></label>
+        <label>SKU
+          <select name="sku" required>
+            <script>document.currentScript.insertAdjacentHTML('beforebegin', DB.get('products', []).map(p=>`<option value="${'{'}p.sku{'}'}">${'{'}p.sku{'}'} — ${'{'}p.name{'}'}</option>`).join(''))</script>
+          </select>
+        </label>
+        <label>Cantidad <input name="qty" type="number" min="1" required></label>
+        <label>Fecha elaboración <input name="prodDate" type="date"></label>
+        <label>Fecha caducidad <input name="expDate" type="date"></label>
+        <label>Notas <input name="notes"></label>
+        <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="addToInventory"> Sumar al inventario</label>
+        <button class="btn" type="submit">Guardar lote</button>
+      </form>
+    </div></div>
+
+    <div class="section">
+      <h2>Listado de lotes</h2>
+      <div class="card"><div class="body">
+        <table>
+          <thead><tr><th>Lote</th><th>SKU</th><th>Cantidad</th><th>Elaboración</th><th>Caducidad</th><th>Notas</th></tr></thead>
+          <tbody id="lot-rows"></tbody>
+        </table>
+        <button class="btn secondary" onclick="exportCSV('lotes.csv', DB.get('lots', []))">Exportar CSV</button>
+      </div></div>
+    </div>
+  </div>
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>

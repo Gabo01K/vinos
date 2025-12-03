@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#76223f">
+  <title>Inicio &ndash; Le Rosset</title>
+  <meta name="description" content="Le Rosset - Bodega y viñ;edo. Compra vinos mexicanos con IVA incluido y envíos a toda la República.">
+  <link rel="preload" as="image" href="assets/logo.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <div class="brand">
+        <img src="assets/logo.svg" alt="Le Rosset logo">
+        <span>Le Rosset</span>
+      </div>
+      <nav>
+        <a href="index.html#catalogo">Catálogo</a>
+        <a href="about.html">Sobre nosotros</a>
+        <a href="contact.html">Contacto</a>
+        <a href="privacy.html">Privacidad</a>
+      </nav>
+      <button class="cta" data-open-cart>Carrito <span id="cart-badge">0</span></button>
+    </div>
+  </header>
+  
+  <main class="hero">
+    <div class="container hero-content">
+      <div>
+        <span class="kicker">Bodega mexicana</span>
+        <h1>Vinos de autor con alma contemporánea</h1>
+        <p>Explora un portafolio de etiquetas artesanales con personalidad vibrante, elaboradas en pequeñas partidas y listas para llegar a tu mesa.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#catalogo">Ver catálogo</a>
+          <a class="btn secondary" href="about.html">Nuestra historia</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <img src="assets/images/vinedo.jpg" alt="Ilustracion abstracta de uvas">
+      </div>
+    </div>
+  </main>
+  <section id="catalogo" class="section">
+    <div class="container">
+      <h2>Catálogo</h2>
+      <div id="product-list" class="grid grid-3"></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid grid-3">
+      <div class="card"><div class="body"><strong>Calidad</strong><p>Selección de uvas y procesos certificados.</p></div></div>
+      <div class="card"><div class="body"><strong>Envíos a todo México</strong><p>Empaque seguro y rastreo.</p></div></div>
+      <div class="card"><div class="body"><strong>Compra segura</strong><p>Pagos protegidos con IVA incluido.</p></div></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container grid" style="grid-template-columns:2fr 1fr 1fr">
+      <div>
+        <strong>Le Rosset</strong>
+        <!--<p class="small">Precios en MXN con IVA incluido (16%). Razon social / RFC / domicilio fiscal: <em>(rellenar seg&uacute;n documentos)</em>.</p>-->
+        <p class="small"><a href="terms.html">T&eacute;rminos y Condiciones</a> &middot; <a href="returns.html">Devoluciones</a> &middot; <a href="shipping.html">Env&iacute;os</a></p>
+      </div>
+      <div>
+        <strong>Atención</strong>
+        <p class="small">Horario: L-V 9:00&ndash;18:00 (CDMX)</p>
+        <p class="small">Tel.: <em>(rellenar)</em><br>Correo: <em>(rellenar)</em></p>
+      </div>
+      <!--<div>
+        <strong>Legal</strong>
+        <p class="small">Operacion conforme a legislacion mexicana aplicable al comercio electronico. Aviso de privacidad conforme a la LFPDPPP.</p>
+      </div>-->
+    </div>
+  </footer>
+  <div class="cookie">
+    <div class="container" style="display:flex; gap:12px; align-items:center; justify-content:space-between">
+      <span class="small">Usamos cookies t&eacute;cnicas para mejorar tu experiencia. Al continuar aceptas su uso.</span>
+      <button class="btn secondary" type="button">Entendido</button>
+    </div>
+  </div>
+  <button class="cart-fab" data-open-cart aria-label="Abrir carrito">&#128722;<span id="cart-badge">0</span></button>
+  <aside class="cart-panel">
+    <div class="cart-head">
+      <strong>Tu carrito</strong>
+      <button class="btn secondary" data-close-cart>Cerrar</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="totals">
+      <div class="small">Subtotal (sin IVA): <span id="subtotal">--</span></div>
+      <div class="small">IVA: <span id="iva">--</span></div>
+      <div style="font-weight:800; margin-top:6px">Total: <span id="total">--</span></div>
+      <div class="notice">Impuestos calculados con IVA incluido en precio.</div>
+      <div id="paypal-button-container" class="paypal-button-placeholder" data-ready="false">
+        <p class="small">Agrega productos para habilitar PayPal.</p>
+      </div>
+    </div>
+  </aside>
+  <script src="script.js"></script>
+</body>
+</html>

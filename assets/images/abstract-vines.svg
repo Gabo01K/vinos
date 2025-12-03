@@ -1,0 +1,40 @@
+<svg width="420" height="420" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<title id="title">Motivo abstracto de uvas y hojas</title>
+<desc id="desc">Conjunto de círculos y formas orgánicas en tonos vino, durazno y salvia que representan un racimo estilizado.</desc>
+<defs>
+  <radialGradient id="berryGlow" cx="50%" cy="40%" r="70%">
+    <stop offset="0" stop-color="#FEF4EC"/>
+    <stop offset="0.45" stop-color="#F5D4E4"/>
+    <stop offset="1" stop-color="#E5A3C6"/>
+  </radialGradient>
+  <linearGradient id="leafGradient" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0" stop-color="#A7C17A"/>
+    <stop offset="1" stop-color="#597A58"/>
+  </linearGradient>
+  <linearGradient id="berryGradient" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#772449"/>
+    <stop offset="1" stop-color="#4A0F2B"/>
+  </linearGradient>
+</defs>
+<rect x="0" y="0" width="420" height="420" rx="48" fill="url(#berryGlow)" opacity="0.3"/>
+<g transform="translate(60 50)">
+  <path d="M124 24c32 12 54 44 46 74s-44 42-84 32c-40-10-67-38-58-66 9-28 64-52 96-40z" fill="url(#berryGlow)" opacity="0.9"/>
+  <circle cx="70" cy="86" r="36" fill="url(#berryGradient)"/>
+  <circle cx="130" cy="90" r="48" fill="url(#berryGradient)" opacity="0.88"/>
+  <circle cx="104" cy="144" r="42" fill="url(#berryGradient)"/>
+  <circle cx="52" cy="144" r="44" fill="url(#berryGradient)" opacity="0.75"/>
+  <circle cx="156" cy="150" r="40" fill="url(#berryGradient)" opacity="0.82"/>
+  <circle cx="96" cy="204" r="48" fill="url(#berryGradient)" opacity="0.86"/>
+  <circle cx="48" cy="204" r="36" fill="url(#berryGradient)" opacity="0.76"/>
+  <circle cx="148" cy="210" r="44" fill="url(#berryGradient)" opacity="0.8"/>
+  <circle cx="104" cy="258" r="38" fill="url(#berryGradient)" opacity="0.78"/>
+  <path d="M130 36c20 4 30 24 26 42s-20 30-38 26-30-20-26-38 18-34 38-30z" fill="#F9C89B" opacity="0.85"/>
+  <path d="M150 0c16 8 26 24 22 38-6 20-26 32-46 28l24-66z" fill="#F0B766" opacity="0.75"/>
+  <path d="M176 40c18 10 30 30 26 48-6 22-30 34-52 28l26-76z" fill="#F8D7B2" opacity="0.8"/>
+  <path d="M186 140c34-12 58-46 52-78-6-32-42-50-80-40 32 6 48 32 44 54-4 22-20 44-56 64 14 2 26 4 40 0z" fill="url(#berryGradient)" opacity="0.65"/>
+  <path d="M64 40c-20-4-44 6-58 24C-8 76-4 96 16 108c18 10 44 8 68-12C62 96 54 76 58 58c2-6 4-12 6-18z" fill="#F9D7D7" opacity="0.7"/>
+  <path d="M196 64c32-8 60 6 66 28 6 24-14 50-48 58-34 8-64-8-70-32 28 10 48 6 66-10 8-8 14-18 18-28z" fill="#F7E6F3" opacity="0.65"/>
+</g>
+<path d="M276 60c18-22 52-34 76-24 28 12 34 46 12 74s-64 44-88 24c-22-18-20-52 0-74z" fill="url(#leafGradient)" opacity="0.7"/>
+<path d="M40 280c16-20 44-32 68-24 26 8 44 36 40 64-4 30-30 56-64 56-32 0-56-28-52-58 2-16 4-26 8-38z" fill="url(#leafGradient)" opacity="0.55"/>
+</svg>

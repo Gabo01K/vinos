@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout Simulado &ndash; Le Rosset</title>
+  <style>
+    body{
+      font-family: "Inter","Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+      margin:0;
+      padding:40px 16px;
+      background:linear-gradient(180deg,#fbf3df 0%,#fff 45%,#f5d7e3 100%);
+      color:#231520;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+    .wrapper{
+      background:rgba(255,255,255,0.9);
+      border-radius:24px;
+      padding:32px;
+      max-width:420px;
+      width:100%;
+      box-shadow:0 18px 45px rgba(47,17,33,0.12);
+      border:1px solid rgba(118,34,63,0.12);
+    }
+    h1{margin-top:0;font-size:26px;color:#76223f;font-family:"Georgia","Times New Roman",serif;}
+    .product{
+      border-radius:18px;
+      background:rgba(118,34,63,0.06);
+      padding:18px;
+      margin-bottom:24px;
+    }
+    .product strong{display:block;font-size:18px;margin-bottom:6px;color:#441429;}
+    .product span{display:block;color:#6c5b64;font-size:14px;}
+    #paypal-button-container{margin-top:12px;}
+    .note{font-size:12px;color:#6c5b64;margin-top:18px;}
+  </style>
+  <script src="https://www.paypal.com/sdk/js?client-id=ATZPpu2gCIIE229RjnGs7BdMVngSVeaR21eRhCALqmw_yonSCRgjwAn3gOT9sGUbjyvshVE2M-kc3lBq&currency=MXN"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Checkout simulado</h1>
+    <div class="product">
+      <strong>Vino Tinto Reserva</strong>
+      <span>Precio: $250.00 MXN</span>
+      <span>Cosecha limitada con notas de frutos rojos y cacao.</span>
+    </div>
+    <div id="paypal-button-container"></div>
+    <p class="note">Esta integración usa PayPal Sandbox. Revisa la consola del navegador para detalles de depuración.</p>
+  </div>
+  <script>
+    const productoDemo = {
+      id: 'vino-reserva-001',
+      name: 'Vino Tinto Reserva',
+      description: 'Simulacion de compra',
+      quantity: '1',
+      unit_amount: {
+        currency_code: 'MXN',
+        value: '250.00'
+      }
+    };
+
+    function mostrarError(message, error) {
+      console.error(message, error);
+      alert(`Error: ${message}`);
+    }
+
+    paypal.Buttons({
+      style: {
+        color: 'gold',
+        shape: 'pill',
+        label: 'pay'
+      },
+      createOrder: function () {
+        const payload = {
+          items: [productoDemo],
+          purchase_units: [
+            {
+              reference_id: 'order-demo-1',
+              amount: {
+                currency_code: 'MXN',
+                value: '250.00',
+                breakdown: {
+                  item_total: { currency_code: 'MXN', value: '250.00' }
+                }
+              },
+              items: [
+                {
+                  name: productoDemo.name,
+                  description: productoDemo.description,
+                  quantity: productoDemo.quantity,
+                  sku: productoDemo.id,
+                  unit_amount: productoDemo.unit_amount
+                }
+              ]
+            }
+          ]
+        };
+
+        return fetch('/api/create-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(res => {
+            if (!res.ok) {
+              throw new Error('No se pudo crear la orden');
+            }
+            return res.json();
+          })
+          .then(data => data.id)
+          .catch(err => {
+            mostrarError('No fue posible iniciar el pago.', err);
+            throw err;
+          });
+      },
+      onApprove: function (data) {
+        return fetch('/api/capture-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ orderID: data.orderID, items: [productoDemo] })
+        })
+          .then(res => {
+            if (!res.ok) {
+              throw new Error('No se pudo capturar la orden');
+            }
+            return res.json();
+          })
+          .then(orderInfo => {
+            alert(`Pago simulado y venta registrada. Ticket #${orderInfo.id}`);
+          })
+          .catch(err => {
+            mostrarError('No fue posible completar el pago.', err);
+          });
+      },
+      onCancel: function (data) {
+        console.warn('Pago cancelado', data);
+        alert('Pago cancelado por el usuario.');
+      },
+      onError: function (err) {
+        mostrarError('Ocurrió un error con PayPal.', err);
+      }
+    }).render('#paypal-button-container');
+  </script>
+</body>
+</html>

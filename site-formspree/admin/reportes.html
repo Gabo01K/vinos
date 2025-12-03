@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reportes • Admin Le Rosset</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <div class="brand">
+      <img src="../assets/logo.svg" alt="Le Rosset logo">
+      <span>Panel Administrativo</span>
+    </div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="inventario.html">Inventario</a>
+      <a href="lotes.html">Productos terminados</a>
+      <a href="ventas.html">Ventas</a>
+      <a href="reportes.html">Reportes</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="section">
+  <div class="container">
+    <h1>Reportes</h1>
+    <div class="grid grid-3">
+      <div class="card"><div class="body">
+        <h2>Ventas por canal</h2>
+        <ul id="rep-channel"></ul>
+      </div></div>
+      <div class="card"><div class="body">
+        <h2>Top productos</h2>
+        <ul id="rep-top"></ul>
+      </div></div>
+      <div class="card"><div class="body">
+        <h2>Valor de inventario</h2>
+        <p id="rep-inv" style="font-weight:800">—</p>
+      </div></div>
+    </div>
+    <div class="section">
+      <div class="card"><div class="body">
+        <h2>Exportaciones rápidas</h2>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <button class="btn secondary" onclick="exportCSV('inventario.csv', DB.get('products', []))">Inventario</button>
+          <button class="btn secondary" onclick="exportCSV('movimientos.csv', DB.get('moves', []))">Movimientos</button>
+          <button class="btn secondary" onclick="exportCSV('ventas.csv', DB.get('sales', []))">Ventas</button>
+          <button class="btn secondary" onclick="exportCSV('lotes.csv', DB.get('lots', []))">Lotes</button>
+        </div>
+        <p class="small">Para PDF usa “Imprimir” del navegador y selecciona “Guardar como PDF”.</p>
+      </div></div>
+    </div>
+  </div>
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>
